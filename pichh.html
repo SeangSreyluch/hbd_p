@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎉 Happy Birthday PICHH 🎂</title>
+  <link rel="shortcut icon" href="image.png" type="image/x-icon">
+
+  <!-- Fonts & Lightbox -->
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {
+      background: #000;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    canvas {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    h1 {
+      font-family: 'Lobster', cursive;
+      font-size: 3rem;
+      color: white;
+      text-shadow: 0 0 10px #ff69b4;
+      animation: pulse 2s infinite;
+      margin: 0.5rem 0;
+    }
+
+    @keyframes pulse {
+      0% { text-shadow: 0 0 10px #ff69b4; }
+      100% { text-shadow: 0 0 20px #00ffff; }
+    }
+
+    .title-container {
+      position: absolute;
+      top: 5%;
+      width: 100%;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .typing-message {
+      position: absolute;
+      top: 15%;
+      width: 100%;
+      text-align: center;
+      font-size: 1.5rem;
+      color: #fff;
+      z-index: 10;
+    }
+
+    .countdown {
+      position: absolute;
+      top: 22%;
+      width: 100%;
+      text-align: center;
+      font-size: 1.2rem;
+      color: #ccc;
+      z-index: 10;
+    }
+
+    .emoji {
+      position: fixed;
+      font-size: 2rem;
+      animation: float 10s linear infinite;
+      z-index: 5;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .gallery {
+      margin-top: 30vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      z-index: 10;
+      position: relative;
+    }
+
+    .gallery a {
+      display: inline-block;
+    }
+
+    .gallery img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #fff;
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
+    }
+
+    @media screen and (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .typing-message { font-size: 1rem; padding-top: 20px;}
+      .gallery img { width: 100px; height: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔊 Audio -->
+  <audio class="song" loop autoplay>
+    <source src="hbd_song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- 🎂 Title -->
+  <div class="title-container">
+    <h1>🎂15th October 2025🎂</h1>
+    <h1>Happy Birthday YOEURM SOKNA 🎉✨</h1>
+  </div>
+
+  <!-- 🎉 Typing Message -->
+  <div class="typing-message"><span id="typed-message"></span></div>
+
+  <!-- ⏳ Countdown -->
+  <div class="countdown" id="countdown"></div>
+
+  <!-- 🎆 Fireworks -->
+  <canvas id="birthday"></canvas>
+
+  <!-- 📸 Memory Gallery -->
+  <div class="gallery">
+    <a href="image/1.jpg" data-lightbox="gallery"><img src="image/1.jpg" alt="Memory 1"></a>
+    <a href="image/2.jpg" data-lightbox="gallery"><img src="image/2.jpg" alt="Memory 2"></a>
+    <a href="image/3.jpg" data-lightbox="gallery"><img src="image/3.jpg" alt="Memory 3"></a>
+  </div>
+
+  <!-- 🎈 Floating Emojis -->
+  <script>
+    const emojis = ['🎈', '🎉', '🎂', '💖', '✨'];
+    for (let i = 0; i < 30; i++) {
+      const emoji = document.createElement('div');
+      emoji.className = 'emoji';
+      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.style.animationDuration = (5 + Math.random() * 5) + 's';
+      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      document.body.appendChild(emoji);
+    }
+  </script>
+
+  <!-- ✅ Typed JS -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    new Typed('#typed-message', {
+      strings: [
+        "Wishing you a day filled with love 💖",
+        "May all your dreams come true ✨",
+        "Stay happy and shine always 🌟",
+        "Happy Birthday NAM PING 🎂"
+      ],
+      typeSpeed: 50,
+      backSpeed: 30,
+      backDelay: 2000,
+      loop: true
+    });
+  </script>
+
+  <!-- 🗓 Countdown to 15th October 2025 -->
+  <script>
+    const countdownEl = document.getElementById('countdown');
+
+    function updateCountdown() {
+      const now = new Date();
+      const targetDate = new Date("2025-10-15T00:00:00");
+
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        countdownEl.textContent = "🎉 Happy Birthday is here! 🎊";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+
+      countdownEl.textContent = `⏳ Countdown to 15 October 2025: ${days}d ${hours}h ${mins}m ${secs}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+
+  <!-- 🎇 Fireworks Animation -->
+  <script>
+    const canvas = document.getElementById("birthday");
+    const ctx = canvas.getContext("2d");
+    let w = canvas.width = window.innerWidth;
+    let h = canvas.height = window.innerHeight;
+
+    const fireworks = [];
+    const particles = [];
+
+    class Firework {
+      constructor() {
+        this.x = Math.random() * w;
+        this.y = h;
+        this.targetY = Math.random() * h / 2;
+        this.speed = 2 + Math.random() * 3;
+        this.color = `hsl(${Math.random() * 360}, 100%, 60%)`;
+      }
+
+      update() {
+        this.y -= this.speed;
+        if (this.y <= this.targetY) {
+          this.explode();
+          return true;
+        }
+        return false;
+      }
+
+      explode() {
+        for (let i = 0; i < 100; i++) {
+          particles.push(new Particle(this.x, this.y, this.color));
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 3, 0, 2 * Math.PI);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+
+    class Particle {
+      constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.radius = 2 + Math.random() * 2;
+        this.angle = Math.random() * 2 * Math.PI;
+        this.speed = Math.random() * 5;
+        this.color = color;
+        this.life = 100;
+      }
+
+      update() {
+        this.x += Math.cos(this.angle) * this.speed;
+        this.y += Math.sin(this.angle) * this.speed;
+        this.life--;
+        return this.life <= 0;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, w, h);
+
+      if (Math.random() < 0.05) {
+        fireworks.push(new Firework());
+      }
+
+      for (let i = fireworks.length - 1; i >= 0; i--) {
+        const fw = fireworks[i];
+        if (fw.update()) {
+          fireworks.splice(i, 1);
+        } else {
+          fw.draw();
+        }
+      }
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        if (p.update()) {
+          particles.splice(i, 1);
+        } else {
+          p.draw();
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    window.addEventListener("resize", () => {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    });
+  </script>
+
+  <!-- 📸 Lightbox & SweetAlert -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- 🔔 SweetAlert Autoplay -->
+  <script>
+    window.addEventListener('load', () => {
+      Swal.fire({
+        title: 'Happy Birthday! 🎉',
+        text: 'To YOEURM SOKNA',
+        imageUrl: 'image.png',
+        imageWidth: 300,
+        imageHeight: 300,
+        imageAlt: 'Birthday Image',
+        confirmButtonText: 'ILY💖!',
+        customClass: {
+          title: 'my-swal-title',
+          htmlContainer: 'my-swal-text'
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          document.querySelector('.song').play();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
